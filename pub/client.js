@@ -23,22 +23,27 @@ function getMdFiles(data) {
 document.addEventListener("DOMContentLoaded", function() {
   showFilesList();
 })
-    
 
 
-function enviarInformacion(){
+function nuevoArchivo(){//esta funcion muestra el formulario
+//formulario
+console.log(html);
+document.querySelector('#paginaCrear').innerHTML=html;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
+sentInformation();
+}
+
+function sentInformation(){//sacar la informacion del formulario qeu enviaron del cliente
     
-  const nombre=document.querySelector('#nombreArchivo')
-  const texto =document.querySelector('#textoDelMarkdown')
-  document.querySelector('#form').onsubmit=()=>{
-      console.log(texto.value)
-      console.log(nombre.value)
-      guardar(texto,value,nombre.value)
+  const nombreFile=document.querySelector('#nombreArchivo')//guarda el nombre del archivo
+  const textoFile =document.querySelector('#textoDelMarkdown')//guarda el contenido del textarea
+  document.querySelector('#formulario').onsubmit=()=>{//luego de hacer submit en el formulario nos envia a la funcion guardar
+      console.log(textoFile.value)
+      console.log(nombreFile.value)
+      save(textoFile,value,nombreFile.value)//this funcion
       return false;
   }
 }
-
-function guardar(text,nombreArchivo){
+function save(text,nombreArchivo){
   const link='http://localhost:3000/guardarServidor'//la apliacion del servidor se debe llamar;
 
   const data={
@@ -51,10 +56,8 @@ function guardar(text,nombreArchivo){
       headers:{
           'Content-Type':'aplication/json',
       },
-      body:JSON.stringify(data),
+      body: JSON.stringify(data),
   }
-  fetch(url,request)
+  fetch(link,request)
   explorar();
 }
-
-
