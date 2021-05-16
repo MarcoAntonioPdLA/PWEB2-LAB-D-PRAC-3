@@ -1,7 +1,5 @@
 
 
-
-
 function enviarInformacion(){
     
     const nombre=document.querySelector('#nombreArchivo')
@@ -31,5 +29,4 @@ function guardar(text,nombreArchivo){
     }
     fetch(url,request)
     explorar();
-    
 }
