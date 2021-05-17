@@ -1,3 +1,12 @@
+//Función para generar menú y añadir clase responsive
+function hiddenMenu(){
+    var x = document.getElementById("myMenu");
+    if (x.className === "menu") {
+        x.className += " responsive";
+    } else {
+        x.className = "menu";
+    }
+} 
 //Con estos 2 métodos se enlistan los archivos
 //Método que hace la consulta al servidor
 function showFilesList() {
