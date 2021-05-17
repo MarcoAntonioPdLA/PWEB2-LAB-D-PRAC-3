@@ -21,14 +21,17 @@ function showFilesList() {
 }
 //Método que estructura la forma en que se verán los archivos
 function getMdFiles(data) {
+    let formats = {'md':'md_100x100.png', 'txt': 'txt_100x100.png', 'unknown':'unknown_100x100.png'}
     let content = '';
-    //content += '<ul>\n';
-    for (let i = 0; i < data.length; i++){
-        content += '<div onclick="javascript:readFile(this.innerHTML);"><img src="/img/mdown_150x150.png"/><p>' + data[i] + '</p></div>\n';
-    } 
-    //content += "</ul>\n";
 
-    console.log(content);
+    for (let i = 0; i < data.length; i++){
+        let dataSplit = data[i].split('.');
+        let format = dataSplit[dataSplit.length - 1];
+        let imagePath = formats[format];
+        if(imagePath === undefined) imagePath = formats['unknown'];
+        content += '<div onclick="javascript:readFile(this.innerHTML);"><img src="/img/' + imagePath + '"/><p>' + data[i] + '</p></div>\n';
+    } 
+
     return content;
 }
 
