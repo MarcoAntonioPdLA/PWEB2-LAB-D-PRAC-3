@@ -2,12 +2,6 @@
   box-sizing: border-box;
 }
 
-.row::after {
-  content: "";
-  clear: both;
-  display: block;
-}
-
 [class*="col-"] {
   float: left;
   padding: 15px;
@@ -41,10 +35,11 @@ body {
   color: black;
 }
 
-.menu a.active {
+.menu a:active {
   background-color: #751344;
-  color: white;
+  color:white;
 }
+
 
 .menu .icon {
   display: none;
@@ -56,12 +51,45 @@ body {
   display: block;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+
+#result div{  
+  text-align: center;
+}
+
+#result p{  
+  margin: 0px;
+}
+
+
+#result div:hover{
+  background-color:#ccc;
+  cursor:pointer;
+  color:blue;
+}
+
 .col-1 {
   width:75%;
 }
 
 .col-2 {
   width:25%;
+}
+
+.col-3 {
+  width:50%;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
 }
 
 .sidebar {
