@@ -1,18 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Sin definir</title>
-    <script src = "client.js"></script>
-    <link rel="stylesheet" type="text/css" href="estilos.css">
-  </head>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="Markdown Work">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Markdown Work</title>
+	<script src="/js/client.js"></script>
+	<link rel="stylesheet" href="/css/styles.css"></link>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
+</head>
+<body>
 
-  <body>
-    <ul class="menu">
-      <li><button onclick="showFilesList()">Inicio</button></li>
-      <li><button onclick="createFiles()">Crear</button></li>
-      <li><button onclick="viewFiles()">Explorar</button></li>
-    </ul>
-    <div id = "result">  </div>
-  </body>
+	<div class="menu" id="myMenu">
+		<a><img src="/img/logo_unsa_100x34.png"></a>
+		<a href="javascript:showFilesList();">Inicio</a>
+		<a href="javascript:newFile();">Crear</a>
+		<a href="javascript:viewFiles();">Explorar</a>
+		<a href="javascript:hiddenMenu();" class="icon"><i class="fa fa-bars"></i></a>
+	</div>
+
+	<div class="row">
+
+		<div class="col-1">
+			<div id="result">				
+			</div>
+
+			<div id = "paginaCrear">
+				<h1>Los Cuadros de Texto</h1>
+				<p>Aquí irán los cuadros de texto donde se mostrarán los markdown.</p>
+			</div>
+			
+		</div>
+	  
+		<div class="col-2 right">
+		  <div class="sidebar">
+			<h2>¿Qué es markdown?</h2>
+			<p>Markdown es un lenguaje de marcado ligero creado por John Gruber que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano.</p>
+			<a href="https://es.wikipedia.org/wiki/Markdown">Wikipedia</a>
+		  </div>
+		</div>
+	</div>
+	  
+	<footer class="footer">
+		<p>Pie página.</p>
+	</footer>
+
+</body>
 </html>
