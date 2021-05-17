@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <title>Sin definir</title>
     <script src = "client.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
   </head>
+
   <body>
-    <!--Aquí va la lista de archivos-->
-    <div id = "files"></div>
+    <ul class="menu">
+      <li><button onclick="showFilesList()">Inicio</button></li>
+      <li><button onclick="createFiles()">Crear</button></li>
+      <li><button onclick="viewFiles()">Explorar</button></li>
+    </ul>
+    <div id = "result">  </div>
   </body>
 </html>
