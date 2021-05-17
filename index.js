@@ -21,3 +21,35 @@ app.get('/showFilesList', (request, response) => {
     response.json(files);
   })
 })
+
+app.get('/create', (request, response) => {
+	fs.readFile(path.resolve(__dirname, 'create.html'), 'utf8',
+		(err, data) => {
+			if (err) {
+				console.error(err)
+				response.status(500).json({
+					error: 'message'
+				})
+				return
+			}
+			response.json({
+				text: data
+			})
+		})
+})
+
+app.get('/view', (request, response) => {
+	fs.readFile(path.resolve(__dirname, 'view.html'), 'utf8',
+		(err, data) => {
+			if (err) {
+				console.error(err)
+				response.status(500).json({
+					error: 'message'
+				})
+				return
+			}
+			response.json({
+				text: data
+			})
+		})
+})

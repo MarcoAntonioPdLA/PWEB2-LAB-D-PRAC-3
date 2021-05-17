@@ -3,7 +3,7 @@ function showFilesList() {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      document.querySelector('#files').innerHTML = getMdFiles(data);
+      document.querySelector('#result').innerHTML = getMdFiles(data);
     }
   );
 }
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
   showFilesList();
 })
 
+<<<<<<< HEAD
 
 function nuevoArchivo(){//esta funcion muestra el formulario
 //formulario
@@ -60,4 +61,26 @@ function save(text,nombreArchivo){
   }
   fetch(link,request)
   explorar();
+=======
+function createFiles() {
+  const url = 'http://localhost:3000/create'
+  fetch(url).then(
+    response => response.json()
+  ).then(
+    data => {
+      document.querySelector("#result").innerHTML = data.text
+    }
+  )
+}
+    
+function viewFiles() {
+  const url = 'http://localhost:3000/view'
+  fetch(url).then(
+    response => response.json()
+  ).then(
+    data => {
+      document.querySelector("#result").innerHTML = data.text
+    }
+  )
+>>>>>>> moises-serv
 }
