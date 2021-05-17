@@ -34,8 +34,8 @@ app.post('/readFile', (request,response) =>{
 	let fileName = request.body.title;
 	fs.readFile(path.resolve(__dirname, 'priv/'+ fileName), 'utf8', (err, file) => {
 		if (err) {
-			console.log('Algo anda mal. D:')
-			console.log(err)
+			console.log('Algo anda mal. D:');
+			console.log(err);
 			return;
 		}
 		response.setHeader("Content.-Type","application/json");
@@ -48,52 +48,16 @@ app.post('/readFile', (request,response) =>{
 	});
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.get('/create', (request, response) => {
-	fs.readFile(path.resolve(__dirname, 'create.html'), 'utf8',
-		(err, data) => {
-			if (err) {
-				console.error(err)
-				response.status(500).json({
-					error: 'message'
-				})
-				return
-			}
-			response.json({
-				text: data
-			})
-		})
-})
-
-app.get('/view', (request, response) => {
-	fs.readFile(path.resolve(__dirname, 'view.html'), 'utf8',
-		(err, data) => {
-			if (err) {
-				console.error(err)
-				response.status(500).json({
-					error: 'message'
-				})
-				return
-			}
-			response.json({
-				text: data
-			})
-		})
-})
+//Con esta función se guarda el nuevo archivo y se muestra en la página
+app.post('/saveNewFile', (request, response) => {
+  let fileTitle = request.body.title + '.md';
+  let fileContent = request.body.content;
+  fs.writeFile(path.resolve(__dirname + '/priv/' + fileTitle), fileContent, function (err) {
+    if (err) {
+			console.log('Algo anda mal. D:');
+      console.log(err);
+			return;
+    }
+    console.log('Guardado exitosamente.');
+  });
+});

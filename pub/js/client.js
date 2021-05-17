@@ -29,17 +29,20 @@ function getMdFiles(data) {
     let format = dataSplit[dataSplit.length - 1];
     let imagePath = formats[format];
     if(imagePath === undefined) imagePath = formats['unknown'];
-      content += '<div onclick="javascript:readFile(this.innerHTML);"><img src="/img/' + imagePath + '"/><p>' + data[i] + '</p></div>\n';
+      content += '<div onclick="javascript:readFile(this.innerHTML, true);"><img src="/img/' + imagePath + '"/><p>' + data[i] + '</p></div>\n';
   } 
   
   return content;
 }
 
 //Con esta función se lee y se muestra el archivo en los cuadros de texto
-function readFile(file) {
-  let fileSplit = file.split('>');
-  let fileName = fileSplit[fileSplit.length - 2].split('<')[0];
-  const url = 'http://localhost:3000/readFile'
+function readFile(file, normalize) {
+  let fileName = file;
+  if(normalize) {
+    let fileSplit = file.split('>');
+    fileName = fileSplit[fileSplit.length - 2].split('<')[0];
+  }
+  const url = 'http://localhost:3000/readFile';
   const data = {
     title: fileName
   }
@@ -60,46 +63,36 @@ function readFile(file) {
   )
 }
 
-//Con estas dos funciones se crea el formulario para crear un nuevo archivo y se guarda
+//Con estas tres funciones se crea el formulario para crear un nuevo archivo y se guarda
 //Función que muestra el formulario
 function createNewFile(){
-    let form = '<form id = "fileForm">' + 
-                    'Nombre del Archivo: <input type="text" id="fileName" name="title" > <br>' + 
-                    'Contenido: <br> <textarea id = "fileContent" rows="7" cols="50"></textarea> <br>' + 
-                    '<button onclick=sendInformation()>Guardar</button>' + 
-                '</form>';
-    document.querySelector('#result').innerHTML = form;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
-    sendInformation();
-    }
+  let form = '<form id = "fileForm">' + 
+                'Nombre del Archivo: <input type="text" id="fileName" name="title" > <br>' + 
+                'Contenido: <br> <textarea id = "fileContent" rows="7" cols="50"></textarea> <br>' + 
+                '<input type="button" value="Guardar" onclick=sendInformation()>' + 
+              '</form>';
+  document.querySelector('#result').innerHTML = form;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
+}
     
-function sendInformation(){//sacar la informacion del formulario qeu enviaron del cliente
-    const fileName=document.querySelector('#fileName')//guarda el nombre del archivo
-    const fileContent =document.querySelector('#fileContent')//guarda el contenido del textarea
-    document.querySelector('#fileForm').onsubmit=()=>{//luego de hacer submit en el formulario nos envia a la funcion guardar
-    console.log(fileName.value)
-    console.log(fileContent.value)
-    save(textoFile,value,fileName.value)//this funcion
-    return false;
-        }
-    }
+function sendInformation() { //Sacar la informacion del formulario qeu enviaron del cliente
+  const fileName=document.querySelector('#fileName');//guarda el nombre del archivo
+  const fileContent =document.querySelector('#fileContent');//guarda el contenido del textarea
+  saveNewFile(fileName.value, fileContent.value);
+}
 
-
-function save(text,nombreArchivo){
-  const link='http://localhost:3000/guardarServidor'//la apliacion del servidor se debe llamar;
-
+function saveNewFile(fileName, fileContent){
+  const url='http://localhost:3000/saveNewFile'; //la aplipacion del servidor se debe llamar
   const data={
-    texto:text,
-    nomb:nombreArchivo
+    title: fileName,
+    content: fileContent
   }
-  console.log(data)
   const request={
     method:'POST',
-    headers:{
-      'Content-Type':'aplication/json',
-    },
+    headers:{'Content-Type':'application/json'},
     body: JSON.stringify(data),
   }
-  fetch(link,request)
+  fetch(url,request);
+  readFile(fileName + ".md", false);
 }
 
 //Esta función va al final
