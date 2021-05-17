@@ -11,10 +11,10 @@ function showFilesList() {
 }
 //Método que estructura la forma en que se verán los archivos
 function getMdFiles(data) {
-  let content = '<h2>Archivos</h2>\n';
+  let content = '\n<h2>Archivos</h2>\n';
   content += '<ul>\n';
   for (let i = 0; i < data.length; i++){
-    content += '  <li>' + data[i] + "</li>\n";
+    content += '  <li onclick = "readFile(this.innerHTML)">' + data[i] + '</li>\n';
   } 
   content += "</ul>\n";
 
@@ -22,11 +22,9 @@ function getMdFiles(data) {
   return content;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  showFilesList();
-})
-
-<<<<<<< HEAD
+function readFile(file) {
+  console.log(file);
+}
 
 function nuevoArchivo(){//esta funcion muestra el formulario
 //formulario
@@ -63,26 +61,9 @@ function save(text,nombreArchivo){
   }
   fetch(link,request)
   explorar();
-=======
-function createFiles() {
-  const url = 'http://localhost:3000/create'
-  fetch(url).then(
-    response => response.json()
-  ).then(
-    data => {
-      document.querySelector("#result").innerHTML = data.text
-    }
-  )
 }
-    
-function viewFiles() {
-  const url = 'http://localhost:3000/view'
-  fetch(url).then(
-    response => response.json()
-  ).then(
-    data => {
-      document.querySelector("#result").innerHTML = data.text
-    }
-  )
->>>>>>> moises-serv
-}
+
+//Esta función va al final
+document.addEventListener("DOMContentLoaded", function() {
+  showFilesList();
+})

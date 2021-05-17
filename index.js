@@ -17,7 +17,6 @@ app.get('/showFilesList', (request, response) => {
       onError(err);
       return;
     }
-    console.log(files);
     response.json(files);
   })
 })
