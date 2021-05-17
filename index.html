@@ -28,13 +28,20 @@
 			<div class="row">
 				
 				<div class="col-3">
-					<textarea name="textarea" rows="10" cols="45">MARKDOWN</textarea>
+					<h3><strong>MD original:</strong></h3>
+					<textarea readonly id="originalText" name="textarea" rows="10" cols="45"></textarea>
 				</div>
 				
-				<div class="col-3">					
-					<textarea name="textarea" rows="10" cols="45">HTML</textarea>
+				<div class="col-3">
+					<h3><strong>MD convertido en HTML:</strong></h3>				
+					<textarea readonly id="htmlText" name="textarea" rows="10" cols="45"></textarea>
 				</div>
-				
+
+				<div>
+					<h3><strong>HTML interpretado:</strong></h3>	
+					<div id="normalText"></div>
+				</div>
+
 			</div>
 			
 		</div>

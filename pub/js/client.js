@@ -11,27 +11,53 @@ function hiddenMenu(){
 //Con estas 2 funciones se enlistan los archivos
 //Función que hace la consulta al servidor
 function showFilesList() {
-    const url = 'http://localhost:3000/showFilesList';
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        document.querySelector('#result').innerHTML = getMdFiles(data);
-      }
-    );
+  const url = 'http://localhost:3000/showFilesList';
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      document.querySelector('#result').innerHTML = getMdFiles(data);
+    }
+  );
 }
 //Función que estructura la forma en que se verán los archivos
 function getMdFiles(data) {
-    let formats = {'md':'md_100x100.png', 'txt': 'txt_100x100.png', 'unknown':'unknown_100x100.png'}
-    let content = '';
+  let formats = {'md':'md_100x100.png', 'txt': 'txt_100x100.png', 'unknown':'unknown_100x100.png'}
+  let content = '';
 
-    for (let i = 0; i < data.length; i++){
-        let dataSplit = data[i].split('.');
-        let format = dataSplit[dataSplit.length - 1];
-        let imagePath = formats[format];
-        if(imagePath === undefined) imagePath = formats['unknown'];
-        content += '<div onclick="javascript:readFile(this.innerHTML);"><img src="/img/' + imagePath + '"/><p>' + data[i] + '</p></div>\n';
-    } 
-    return content;
+  for (let i = 0; i < data.length; i++) {
+    let dataSplit = data[i].split('.');
+    let format = dataSplit[dataSplit.length - 1];
+    let imagePath = formats[format];
+    if(imagePath === undefined) imagePath = formats['unknown'];
+      content += '<div onclick="javascript:readFile(this.innerHTML);"><img src="/img/' + imagePath + '"/><p>' + data[i] + '</p></div>\n';
+  } 
+  
+  return content;
+}
+
+//Con esta función se lee y se muestra el archivo en los cuadros de texto
+function readFile(file) {
+  let fileSplit = file.split('>');
+  let fileName = fileSplit[fileSplit.length - 2].split('<')[0];
+  const url = 'http://localhost:3000/readFile'
+  const data = {
+    title: fileName
+  }
+  const request = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data),
+  }
+  http = fetch(url,request)
+  http.then(
+    response => response.json()
+  ).then(
+    data => {
+      document.querySelector('#originalText').innerHTML = data.originalText;
+      document.querySelector('#htmlText').innerHTML = data.htmlText;
+      document.querySelector('#normalText').innerHTML = data.htmlText; 
+    }
+  )
 }
 
 //Con estas dos funciones se crea el formulario para crear un nuevo archivo y se guarda
