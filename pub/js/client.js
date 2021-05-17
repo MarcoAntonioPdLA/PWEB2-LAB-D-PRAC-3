@@ -8,8 +8,8 @@ function hiddenMenu(){
     }
 }  
 
-//Con estos 2 métodos se enlistan los archivos
-//Método que hace la consulta al servidor
+//Con estas 2 funciones se enlistan los archivos
+//Función que hace la consulta al servidor
 function showFilesList() {
     const url = 'http://localhost:3000/showFilesList';
     fetch(url)
@@ -19,7 +19,7 @@ function showFilesList() {
       }
     );
 }
-//Método que estructura la forma en que se verán los archivos
+//Función que estructura la forma en que se verán los archivos
 function getMdFiles(data) {
     let formats = {'md':'md_100x100.png', 'txt': 'txt_100x100.png', 'unknown':'unknown_100x100.png'}
     let content = '';
@@ -34,50 +34,51 @@ function getMdFiles(data) {
     return content;
 }
 
-//Función de prueba
-function readFile(file) {
-    console.log(file);
-}
-
-function createNewFile(){ //esta funcion muestra el formulario
-//formulario
-    console.log(html);
-    document.querySelector('#paginaCrear').innerHTML=html;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
+//Con estas dos funciones se crea el formulario para crear un nuevo archivo y se guarda
+//Función que muestra el formulario
+function createNewFile(){
+    //Formulario
+    let form = '<form id = "fileForm">' + 
+                    'Nombre del Archivo: <input type="text" id="fileName" name="title" > <br>' + 
+                    'Contenido: <br> <textarea id = "fileContent" rows="7" cols="50"></textarea> <br>' + 
+                    '<input type="submit" value="Guardar"> ' + 
+                '</form>';
+    document.querySelector('#result').innerHTML = form;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
     sendInformation();
-}
-
-function sendInformation(){//sacar la informacion del formulario qeu enviaron del cliente
+    }
     
-    const nombreFile=document.querySelector('#nombreArchivo')//guarda el nombre del archivo
-    const textoFile =document.querySelector('#textoDelMarkdown')//guarda el contenido del textarea
-    document.querySelector('#formulario').onsubmit=()=>{//luego de hacer submit en el formulario nos envia a la funcion guardar
-        console.log(textoFile.value)
-        console.log(nombreFile.value)
-        save(textoFile,value,nombreFile.value)//this funcion
-        return false;
+function sendInformation(){//sacar la informacion del formulario qeu enviaron del cliente
+    const fileName=document.querySelector('#fileName')//guarda el nombre del archivo
+    const fileContent =document.querySelector('#fileContent')//guarda el contenido del textarea
+    document.querySelector('#fileForm').onsubmit=()=>{//luego de hacer submit en el formulario nos envia a la funcion guardar
+    console.log(fileName.value)
+    console.log(fileContent.value)
+    save(textoFile,value,fileName.value)//this funcion
+    return false;
+        }
     }
-}
+
+
 function save(text,nombreArchivo){
+  const link='http://localhost:3000/guardarServidor'//la apliacion del servidor se debe llamar;
 
-    const link='http://localhost:3000/guardarServidor'//la apliacion del servidor se debe llamar;
-
-    const data={
-        texto:text,
-        nomb:nombreArchivo
-    }
-    console.log(data)
-    const request={
-        method:'POST',
-        headers:{
-            'Content-Type':'aplication/json',
-        },
-        body: JSON.stringify(data),
-    }
-    fetch(link,request)
-    explorar();
+  const data={
+    texto:text,
+    nomb:nombreArchivo
+  }
+  console.log(data)
+  const request={
+    method:'POST',
+    headers:{
+      'Content-Type':'aplication/json',
+    },
+    body: JSON.stringify(data),
+  }
+  fetch(link,request)
+  explorar();
 }
 
 //Esta función va al final
 document.addEventListener("DOMContentLoaded", function() {
-showFilesList();
+  showFilesList();
 })
