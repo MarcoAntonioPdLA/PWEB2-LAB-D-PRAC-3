@@ -63,11 +63,10 @@ function readFile(file) {
 //Con estas dos funciones se crea el formulario para crear un nuevo archivo y se guarda
 //Función que muestra el formulario
 function createNewFile(){
-    //Formulario
     let form = '<form id = "fileForm">' + 
                     'Nombre del Archivo: <input type="text" id="fileName" name="title" > <br>' + 
                     'Contenido: <br> <textarea id = "fileContent" rows="7" cols="50"></textarea> <br>' + 
-                    '<input type="submit" value="Guardar"> ' + 
+                    '<button onclick=sendInformation()>Guardar</button>' + 
                 '</form>';
     document.querySelector('#result').innerHTML = form;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
     sendInformation();
@@ -101,7 +100,6 @@ function save(text,nombreArchivo){
     body: JSON.stringify(data),
   }
   fetch(link,request)
-  explorar();
 }
 
 //Esta función va al final
