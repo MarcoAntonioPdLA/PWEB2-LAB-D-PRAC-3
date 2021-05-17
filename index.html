@@ -13,21 +13,28 @@
 
 	<div class="menu" id="myMenu">
 		<a><img src="/img/logo_unsa_100x34.png"></a>
-		<a href="javascript:showFilesList();">Inicio</a>
-		<a href="javascript:newFile();">Crear</a>
-		<a href="javascript:viewFiles();">Explorar</a>
+		<a href="#" onclick="javascript:showFilesList();">Inicio</a>
+		<a href="#" onclick="javascript:newFile();">Crear</a>
+		<a href="#" onclick="javascript:viewFiles();">Explorar</a>
 		<a href="javascript:hiddenMenu();" class="icon"><i class="fa fa-bars"></i></a>
 	</div>
 
 	<div class="row">
 
 		<div class="col-1">
-			<div id="result">				
-			</div>
 
-			<div id = "paginaCrear">
-				<h1>Los Cuadros de Texto</h1>
-				<p>Aquí irán los cuadros de texto donde se mostrarán los markdown.</p>
+			<div id="result"class="grid"></div>
+
+			<div class="row">
+				
+				<div class="col-3">
+					<textarea name="textarea" rows="10" cols="45">MARKDOWN</textarea>
+				</div>
+				
+				<div class="col-3">					
+					<textarea name="textarea" rows="10" cols="45">HTML</textarea>
+				</div>
+				
 			</div>
 			
 		</div>
@@ -42,7 +49,7 @@
 	</div>
 	  
 	<footer class="footer">
-		<p>Pie página.</p>
+		<p>Trabajo realizado por:<br> GIAN ANDREW DELGADO ZAVALETA | MARCO ANTONIO PONCE DE LEON AGUILAR | MOISES ENRIQUE MAYTA CONDORI | CRHISTIAN ZIEGLER PACORI PAUCAR | MARCO EDMUNDO EDILBERTO CENTENO QUISPE</p>
 	</footer>
 
 </body>

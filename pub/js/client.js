@@ -21,12 +21,12 @@ function showFilesList() {
 }
 //Método que estructura la forma en que se verán los archivos
 function getMdFiles(data) {
-    let content = '\n<h2>Archivos</h2>\n';
-    content += '<ul>\n';
+    let content = '';
+    //content += '<ul>\n';
     for (let i = 0; i < data.length; i++){
-        content += '  <li><a href = "javascript:readFile(this.innerHTML)">' + data[i] + '</a></li>\n';
+        content += '<div onclick="javascript:readFile(this.innerHTML);"><img src="/img/mdown_150x150.png"/><p>' + data[i] + '</p></div>\n';
     } 
-    content += "</ul>\n";
+    //content += "</ul>\n";
 
     console.log(content);
     return content;
