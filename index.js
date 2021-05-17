@@ -14,7 +14,8 @@ response.sendFile(path.resolve(__dirname, 'index.html'))
 app.get('/showFilesList', (request, response) => {
   fs.readdir(path.resolve(__dirname, 'priv/'), 'utf8', (err, files) => {
     if (err) {
-      onError(err);
+      console.log('Algo anda mal. D:')
+			console.log(err)
       return;
     }
     response.json(files);
