@@ -1,4 +1,3 @@
-//Función para hacer responsivo el sitio web. Oculta el menú de acuerdo al tamaño de la ventana.
 function hiddenMenu(){
     var x = document.getElementById("myMenu");
     if (x.className === "menu") {
@@ -32,27 +31,27 @@ function getMdFiles(data) {
     return content;
 }
 
-//Función de prueba
 function readFile(file) {
     console.log(file);
 }
 
 function newFile(){ //esta funcion muestra el formulario
 //formulario
+//formulario
 
-    var html = '<form id = "formulario">' + 
-                    'Nombre del Archivo: <input type="text" id="nombreArchivo" name="title" > <br>' + 
-                    'Texto: <br> <textarea id = "textoDelMarkdown" rows="7" cols="50"></textarea> <br>' + 
-                    '<input type="submit" value="Guardar"> ' + 
-                '</form>';
+var html = '<form id = "formulario">' + 
+                'Nombre del Archivo: <input type="text" id="nombreArchivo" name="title" > <br>' + 
+                'Texto: <br> <textarea id = "textoDelMarkdown" rows="7" cols="50"></textarea> <br>' + 
+                '<input type="submit" value="Guardar"> ' + 
+            '</form>';
 
-    console.log(html);
+console.log(html);
 
-    document.querySelector('#result').innerHTML=html;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
-    sentInformation();
+document.querySelector('#result').innerHTML=html;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
+sentInformation();
 }
 
-function sendInformation(){//sacar la informacion del formulario qeu enviaron del cliente
+function sentInformation(){//sacar la informacion del formulario qeu enviaron del cliente
     
     const nombreFile=document.querySelector('#nombreArchivo')//guarda el nombre del archivo
     const textoFile =document.querySelector('#textoDelMarkdown')//guarda el contenido del textarea
