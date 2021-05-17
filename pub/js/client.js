@@ -37,8 +37,15 @@ function readFile(file) {
 
 function newFile(){ //esta funcion muestra el formulario
 //formulario
+
+    var html = '<form id = "formulario">' + 
+                    'Nombre del Archivo: <input type="text" id="nombreArchivo" name="title" > <br>' + 
+                    'Texto: <br> <textarea id = "textoDelMarkdown" rows="7" cols="50"></textarea> <br>' + 
+                    '<input type="submit" value="Guardar"> ' + 
+                '</form>';
+
     console.log(html);
-    document.querySelector('#paginaCrear').innerHTML=html;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
+    document.querySelector('#result').innerHTML=html;//cuando hacemos click en el menu  para crear un nuevo archivo nos manda al formulario para llenarlo
     sentInformation();
 }
 
